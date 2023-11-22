@@ -4,6 +4,7 @@ import styles from "./index.module.css";
 import IndustryDropdown from "./IndustryDropdown.jsx";
 import { useState } from "react";
 import Card from "../card/index.jsx";
+import { useBots } from "../../stores/index.js";
 
 const { Text } = Typography;
 
@@ -21,7 +22,9 @@ const Templates = () => {
     setIndustry(val);
   };
 
-  const [bots, setBots] = useState([]);
+  // const [bots, setBots] = useState([]);
+
+  const { bots } = useBots();
 
   return (
     <div>
@@ -47,8 +50,15 @@ const Templates = () => {
         />
       </div>
       <div style={{ padding: "24px", display: "flex", gap: "24px" }}>
-        <Card />
-        {/*<Card />*/}
+        {bots.map((bot) => {
+          return (
+            <Card
+              botname={bot.botname}
+              description={bot.description}
+              key={bot.id}
+            />
+          );
+        })}
       </div>
     </div>
   );

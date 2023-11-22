@@ -6,15 +6,19 @@ import {
   CodepenCircleOutlined,
   EditOutlined,
 } from "@ant-design/icons";
-import { useEditBotPageStore } from "../../stores/index.js";
+import { useBotStore, useEditBotPageStore } from "../../stores/index.js";
 
 const { Paragraph } = Typography;
 
-const Card = () => {
+const Card = (props) => {
+  // eslint-disable-next-line react/prop-types
+  const { botname, description } = props;
   const { setVisible } = useEditBotPageStore();
+  const { setName } = useBotStore();
 
   const onOpenEditBotPage = () => {
     setVisible(true);
+    setName(botname);
   };
 
   return (
@@ -47,9 +51,9 @@ const Card = () => {
         </div>
       </div>
       <h4 style={{ color: "#3E048B", paddingTop: "24px" }}>Healthcare</h4>
-      <h2 style={{ margin: 0 }}>Doctor assistant bot</h2>
+      <h2 style={{ margin: 0 }}>{botname}</h2>
       <Paragraph ellipsis={{ rows: 3 }} style={{ color: "#6F767D" }}>
-        Provide doctor a smooth experience to manage their appointments
+        {description}
       </Paragraph>
     </div>
   );

@@ -1,13 +1,18 @@
 import { Modal } from "antd";
 import { Form, Input } from "antd";
-
-function noop() {}
+import { useBots } from "../../stores/index.js";
 
 const { TextArea } = Input;
 
 const CreateBot = (props) => {
   // eslint-disable-next-line react/prop-types
   const { isModalOpen, handleOk, onCancel } = props;
+  const { addBot } = useBots();
+
+  const onFinish = (val) => {
+    addBot(val);
+    onCancel();
+  };
 
   return (
     <Modal
@@ -18,15 +23,16 @@ const CreateBot = (props) => {
       onCancel={onCancel}
       okText={"Save"}
       centered
+      okButtonProps={{ htmlType: "submit", form: "editForm" }}
     >
       <Form
+        id="editForm"
         name="basic"
         layout={"vertical"}
         style={{
           maxWidth: 600,
         }}
-        onFinish={noop}
-        onFinishFailed={noop}
+        onFinish={onFinish}
         autoComplete="off"
       >
         <Form.Item
