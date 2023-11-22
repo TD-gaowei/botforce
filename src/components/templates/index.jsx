@@ -21,6 +21,8 @@ const Templates = () => {
     setIndustry(val);
   };
 
+  const [bots, setBots] = useState([]);
+
   return (
     <div>
       <div className={styles.template}>
@@ -46,7 +48,7 @@ const Templates = () => {
       </div>
       <div style={{ padding: "24px", display: "flex", gap: "24px" }}>
         <Card />
-        <Card />
+        {/*<Card />*/}
       </div>
     </div>
   );

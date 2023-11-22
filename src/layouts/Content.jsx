@@ -19,7 +19,7 @@ const items = [
 ];
 
 const Content = () => {
-  const { visible, setVisible } = useEditBotPageStore();
+  const { visible } = useEditBotPageStore();
 
   return (
     <div className={styles.content}>

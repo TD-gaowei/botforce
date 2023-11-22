@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 import styles from "./index.module.css";
-import { Avatar, Typography } from "antd";
-import { PlusCircleOutlined, PlusOutlined } from "@ant-design/icons";
+import { Typography } from "antd";
+import { PlusCircleOutlined } from "@ant-design/icons";
 const { Paragraph } = Typography;
 import { Input, Switch } from "antd";
 import Upload from "./Upload.jsx";
@@ -16,6 +16,8 @@ const Content = () => {
 
   const [instruction, setInstruction] = useState("");
   const [instructionIsPreview, setInstructionIsPreview] = useState(false);
+
+  const [preview, setPreview] = useState(true);
 
   const onInstructionChange = (e) => setInstruction(e.target.value);
 
@@ -82,14 +84,22 @@ const Content = () => {
             </p>
           </div>
           <div style={{ gap: "8px", display: "flex" }}>
-            <Switch defaultChecked onChange={() => {}} />
+            <Switch defaultChecked onChange={(val) => setPreview(val)} />
             <span style={{ margin: 0 }}>Preview mode</span>
           </div>
         </div>
 
         <div className={styles.bottom}>
-          <Message />
-          <Message />
+          {preview ? (
+            <div>Preview Page!</div>
+          ) : (
+            <div style={{ flex: 1 }}>
+              <Message />
+              <Message />
+            </div>
+          )}
+
+          <Input placeholder={"Ask me anything"} />
         </div>
       </div>
     </div>

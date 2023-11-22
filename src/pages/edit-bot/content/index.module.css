@@ -27,8 +27,8 @@
   flex-direction: column;
   justify-content: space-between;
   /*align-items: center;*/
-  background: #747bff;
-  /*height: 100%;*/
+  /*background: #747bff;*/
+  height: 100%;
 }
 
 .right {

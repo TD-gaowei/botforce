@@ -9,3 +9,5 @@ export const useEditBotPageStore = create((set) => ({
   visible: false,
   setVisible: (visible) => set(() => ({ visible })),
 }));
+
+export const useBots = create();
