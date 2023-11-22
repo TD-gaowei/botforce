@@ -9,7 +9,7 @@ const items = [
   {
     key: "1",
     label: "My bots",
-    children: <Templates />,
+    children: <div style={{ padding: "24px" }}>My bots Page!</div>,
   },
   {
     key: "2",
@@ -18,14 +18,8 @@ const items = [
   },
 ];
 
-const onChange = (key) => {
-  console.log(key);
-};
-
 const Content = () => {
   const { visible, setVisible } = useEditBotPageStore();
-
-  console.log("::::", visible, setVisible);
 
   return (
     <div className={styles.content}>
@@ -34,12 +28,7 @@ const Content = () => {
       ) : (
         <>
           <ToolBar />
-          <Tabs
-            defaultActiveKey="1"
-            items={items}
-            onChange={onChange}
-            style={{ height: "36px" }}
-          />
+          <Tabs defaultActiveKey="2" items={items} style={{ height: "36px" }} />
         </>
       )}
     </div>
