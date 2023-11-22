@@ -11,11 +11,13 @@ const CreateBot = (props) => {
 
   return (
     <Modal
+      transitionName={"zoom"}
       title="Create a bot"
       open={isModalOpen}
       onOk={handleOk}
       onCancel={onCancel}
       okText={"Save"}
+      centered
     >
       <Form
         name="basic"
