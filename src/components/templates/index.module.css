@@ -1,0 +1,13 @@
+.template {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  height: 48px;
+  border-bottom: 1px solid #e8eaeb;
+}
+
+.input {
+  width: 320px;
+}

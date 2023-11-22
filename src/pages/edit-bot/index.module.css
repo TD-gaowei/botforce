@@ -1,0 +1,21 @@
+.page-header {
+  height: 96px;
+  border-bottom: 1px solid #e8eaeb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+}
+
+.left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}

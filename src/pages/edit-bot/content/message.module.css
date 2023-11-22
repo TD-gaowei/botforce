@@ -1,0 +1,8 @@
+.message {
+  width: 100%;
+  background: #fafafa;
+  padding: 24px;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+}
