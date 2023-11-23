@@ -1,23 +1,28 @@
-import { Typography, Avatar, Button } from "antd";
+import { Typography, Avatar, message } from "antd";
 import Icon from "@cobalt/react-icon";
 import styles from "./index.module.css";
-import { useBotStore, useEditBotPageStore } from "../../stores/index.js";
 import CobaltButton from "@cobalt/react-button";
 const { Paragraph } = Typography;
 
 const Card = (props) => {
+  const [messageApi, contextHolder] = message.useMessage();
   // eslint-disable-next-line react/prop-types
   const { botname, description } = props;
-  const { setVisible } = useEditBotPageStore();
-  const { setName } = useBotStore();
+  // const { setVisible } = useEditBotPageStore();
+  // const { setName } = useBotStore();
 
   const onOpenEditBotPage = () => {
-    setVisible(true);
-    setName(botname);
+    // setVisible(true);
+    // setName(botname);
+    messageApi.open({
+      type: "success",
+      content: "Bot is now in use!",
+    });
   };
 
   return (
     <div className={styles.card}>
+      {contextHolder}
       <div
         style={{
           display: "flex",

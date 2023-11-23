@@ -12,12 +12,12 @@ export const useEditBotPageStore = create((set) => ({
 
 export const useBots = create((set) => ({
   bots: [
-    {
-      id: 1,
-      botname: "Doctor assistant bot",
-      description:
-        "Provide doctor a smooth experience to manage their appointments",
-    },
+    // {
+    //   id: 1,
+    //   botname: "Doctor assistant bot",
+    //   description:
+    //     "Provide doctor a smooth experience to manage their appointments",
+    // },
   ],
   addBot: (bot) =>
     set((state) => ({

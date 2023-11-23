@@ -1,6 +1,10 @@
 import { Modal } from "antd";
 import { Form, Input } from "antd";
-import { useBots } from "../../stores/index.js";
+import {
+  useBots,
+  useBotStore,
+  useEditBotPageStore,
+} from "../../stores/index.js";
 
 const { TextArea } = Input;
 
@@ -8,10 +12,14 @@ const CreateBot = (props) => {
   // eslint-disable-next-line react/prop-types
   const { isModalOpen, handleOk, onCancel } = props;
   const { addBot } = useBots();
+  const { setVisible } = useEditBotPageStore();
+  const { setName } = useBotStore();
 
   const onFinish = (val) => {
     addBot(val);
     onCancel();
+    setVisible(true);
+    setName(val.botname);
   };
 
   return (
