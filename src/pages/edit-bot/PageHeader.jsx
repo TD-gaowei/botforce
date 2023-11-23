@@ -32,6 +32,7 @@ const PageHeader = () => {
             background: "#3E048B",
             color: "#fff",
           }}
+          onClick={() => setVisible(false)}
         >
           Publish
         </Button>

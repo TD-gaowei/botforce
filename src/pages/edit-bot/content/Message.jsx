@@ -9,7 +9,7 @@ const Message = () => {
       <Avatar size={40} icon={<UserOutlined />} />
       <div>
         <h4 style={{ margin: 0 }}>You</h4>
-        <p style={{ margin: 0 }}>sdsdsdsdsdsdsdsdsdsdsdsdsdsdsdssdsds</p>
+        <p style={{ margin: 0 }}>Hi</p>
       </div>
     </div>
   );

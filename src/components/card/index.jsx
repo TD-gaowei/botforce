@@ -1,13 +1,8 @@
 import { Typography, Avatar, Button } from "antd";
-
+import Icon from "@cobalt/react-icon";
 import styles from "./index.module.css";
-import {
-  UserOutlined,
-  CodepenCircleOutlined,
-  EditOutlined,
-} from "@ant-design/icons";
 import { useBotStore, useEditBotPageStore } from "../../stores/index.js";
-
+import CobaltButton from "@cobalt/react-button";
 const { Paragraph } = Typography;
 
 const Card = (props) => {
@@ -31,23 +26,17 @@ const Card = (props) => {
           padding: "24px 0",
         }}
       >
-        <Avatar size={52} icon={<UserOutlined />} />
+        <Avatar
+          size={52}
+          icon={<Icon name={"calendar_medical"} color="#3e048b" />}
+        />
 
-        <div style={{ display: "flex", gap: "12px" }}>
-          <CodepenCircleOutlined size={24} />
-          <Button
-            type="primary"
-            icon={<EditOutlined />}
-            style={{
-              width: "88px",
-              height: "40px",
-              background: "#E8EAEB",
-              color: "#000",
-            }}
-            onClick={onOpenEditBotPage}
-          >
-            Use
-          </Button>
+        <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+          <Icon name={"visibility"} size="tiny" />
+          <CobaltButton type="secondary" onClick={onOpenEditBotPage}>
+            <Icon name={"create"} size="tiny" />
+            <span style={{ paddingLeft: "8px" }}>Use</span>
+          </CobaltButton>
         </div>
       </div>
       <h4 style={{ color: "#3E048B", paddingTop: "24px" }}>Healthcare</h4>

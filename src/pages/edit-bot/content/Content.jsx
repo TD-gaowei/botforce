@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import styles from "./index.module.css";
-import { Typography } from "antd";
+import Icon from "@cobalt/react-icon";
+import { Typography, Tag, Divider } from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
 const { Paragraph } = Typography;
 import { Input, Switch } from "antd";
@@ -9,10 +10,23 @@ import Upload from "./Upload.jsx";
 import Message from "./Message.jsx";
 import UploadBotIcon from "./UploadBotIcon.jsx";
 
+import welcomeSrc from "../../../assets/welcome.png";
+
+const tags = [
+  "Seek medication advice",
+  "My prescription",
+  "Cancel appointment",
+  "My clinic visit recording",
+  "Change the date of appointment",
+  "Describe my symptom",
+];
+
 const { TextArea } = Input;
 const Content = () => {
   const [apis, setApis] = useState([]);
   const [api, setApi] = useState(false);
+
+  const [apiText, setApiText] = useState("");
 
   const [instruction, setInstruction] = useState("");
   const [instructionIsPreview, setInstructionIsPreview] = useState(false);
@@ -24,6 +38,19 @@ const Content = () => {
   const onInstructionKeyDownChange = (e) => {
     if (e.key === "Enter") {
       setInstructionIsPreview(true);
+    }
+  };
+
+  const onApiChange = (e) => {
+    const val = e.target.value;
+    setApiText(val);
+  };
+
+  const onApiKeyDownChange = (e) => {
+    if (e.key === "Enter") {
+      setApis((prev) => [...prev, apiText]);
+      setApiText("");
+      setApi(false);
     }
   };
 
@@ -59,19 +86,51 @@ const Content = () => {
 
         <h3 style={{ paddingTop: "24px" }}>Connected Api</h3>
 
-        {apis.map((api) => (
-          <div key={api}>1111</div>
-        ))}
-        <div onClick={() => setApi(true)}>
-          {api ? (
-            <Input allowClear />
-          ) : (
+        <div
+          style={{
+            background: "#FAFAFA",
+            padding: "0 24px",
+            borderRadius: "4px",
+          }}
+        >
+          {apis.map((api, _idx) => (
             <>
-              <PlusCircleOutlined />
-              <span style={{ paddingLeft: "4px" }}>
+              <div key={api} style={{ padding: "16px 0" }}>
+                {api}
+              </div>
+              {_idx !== apis.length - 1 && <Divider />}
+            </>
+          ))}
+        </div>
+
+        <div style={{ marginTop: "4px" }}>
+          {api ? (
+            <Input
+              value={apiText}
+              allowClear
+              onChange={onApiChange}
+              onKeyDown={onApiKeyDownChange}
+            />
+          ) : (
+            <div
+              onClick={() => setApi(true)}
+              style={{ display: "flex", alignItems: "center" }}
+            >
+              <Icon
+                name={"add_circle_outline"}
+                size={"tiny"}
+                color={"#3E048B"}
+              />
+              <span
+                style={{
+                  paddingLeft: "4px",
+                  color: "#AEB3B8",
+                  fontSize: "14px",
+                }}
+              >
                 Type Api link, press “Enter” to add an Api
               </span>
-            </>
+            </div>
           )}
         </div>
       </div>
@@ -91,15 +150,46 @@ const Content = () => {
 
         <div className={styles.bottom}>
           {preview ? (
-            <div>Preview Page!</div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
+                flex: 1,
+                background: "#F2F4F5",
+              }}
+            >
+              {/*<h3>Welcome</h3>*/}
+              {/*<p>Pick an option from below prompts to get started</p>*/}
+              {/*<div*/}
+              {/*  style={{*/}
+              {/*    display: "flex",*/}
+              {/*    gap: "12px",*/}
+              {/*    flexWrap: "wrap",*/}
+              {/*    width: "80%",*/}
+              {/*  }}*/}
+              {/*>*/}
+              {/*  {tags.map((t) => (*/}
+              {/*    <Tag key={t}>{t}</Tag>*/}
+              {/*  ))}*/}
+              {/*</div>*/}
+              <img src={welcomeSrc} alt={"welcome"} width="80%" />
+              <Input
+                placeholder={"Ask me anything"}
+                style={{ position: "fixed", bottom: "50px", width: "600px" }}
+              />
+            </div>
           ) : (
             <div style={{ flex: 1 }}>
               <Message />
-              <Message />
+
+              <Input
+                placeholder={"Ask me anything"}
+                style={{ position: "fixed", bottom: "50px", width: "640px" }}
+              />
             </div>
           )}
-
-          <Input placeholder={"Ask me anything"} />
         </div>
       </div>
     </div>

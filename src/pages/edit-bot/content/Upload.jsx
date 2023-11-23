@@ -1,5 +1,6 @@
-import { InboxOutlined, PlusCircleOutlined } from "@ant-design/icons";
+import { PlusCircleOutlined } from "@ant-design/icons";
 import { message, Upload } from "antd";
+import Icon from "@cobalt/react-icon";
 const { Dragger } = Upload;
 const props = {
   name: "file",
@@ -23,7 +24,7 @@ const props = {
 const App = () => (
   <Dragger {...props}>
     <p className="ant-upload-drag-icon">
-      <InboxOutlined />
+      <Icon name={"upload"} size="xlarge" color={"#AEB3B8"} />
     </p>
     <p className="ant-upload-text">Drag & Drop here</p>
     <p className="ant-upload-hint" style={{ color: "#3E048B" }}>

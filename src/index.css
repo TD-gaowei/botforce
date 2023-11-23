@@ -118,3 +118,21 @@ li {
   border-color: #fff !important;
   /*background: #fff !important;*/
 }
+
+.ant-tag {
+  padding: 8px 16px !important;
+  border-radius: 20px !important;
+}
+
+.ant-divider {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.ant-switch.ant-switch-checked {
+  background-color: #3e048b !important;
+}
+
+.ant-avatar {
+  background: #f1edf8 !important;
+}
