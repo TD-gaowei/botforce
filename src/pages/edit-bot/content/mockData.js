@@ -5,7 +5,7 @@ const BotForceMessages = [
   },
   {
     body: "Please provide your name and Medical ID so that I can locate relevant information in the system",
-    identity: "assistant",
+    identity: "appointment",
   },
   {
     body: "Thank you for providing the information.Your next appointment is scheduled for December 1, 2023, at 10:00 AM\n",
