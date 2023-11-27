@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import styles from "./index.module.css";
 import Icon from "@cobalt/react-icon";
@@ -91,6 +91,18 @@ const Content = () => {
   const hasMap = useMemo(() => {
     return messages.some((m) => m.body.includes("Maps"));
   }, [messages]);
+
+  const [parentRef, setParentRef] = useState(null);
+  const [childRef, setChildRef] = useState(null);
+
+  useEffect(() => {
+    if (!parentRef || !childRef) return;
+
+    parentRef?.scrollTo({
+      top: childRef?.clientHeight - parentRef?.clientHeight + 12,
+      behavior: "smooth",
+    });
+  }, [childRef, parentRef, messages]);
 
   return (
     <div className={styles.content}>
@@ -219,12 +231,17 @@ const Content = () => {
               />
             </div>
           ) : (
-            <div style={{ height: "calc(100vh - 350px)", overflow: "auto" }}>
-              {messages?.map((m) => (
-                <Message type={m.type} body={m.body} key={m.body} />
-              ))}
+            <div
+              style={{ height: "calc(100vh - 350px)", overflow: "auto" }}
+              ref={(element) => setParentRef(element)}
+            >
+              <div ref={(element) => setChildRef(element)}>
+                {messages?.map((m) => (
+                  <Message type={m.type} body={m.body} key={m.body} />
+                ))}
 
-              {hasMap && <MapMessage />}
+                {hasMap && <MapMessage />}
+              </div>
 
               <Input
                 value={message}
