@@ -31,7 +31,7 @@ const Content = () => {
   const [instruction, setInstruction] = useState("");
   const [instructionIsPreview, setInstructionIsPreview] = useState(false);
 
-  const [preview, setPreview] = useState(true);
+  const [preview, setPreview] = useState(false);
 
   const onInstructionChange = (e) => setInstruction(e.target.value);
 
@@ -51,6 +51,22 @@ const Content = () => {
       setApis((prev) => [...prev, apiText]);
       setApiText("");
       setApi(false);
+    }
+  };
+
+  const [messages, setMessages] = useState([{ type: "You", body: "You" }]);
+  const [message, setMessage] = useState("");
+
+  const onBotForceChange = (e) => {
+    const val = e.target.value;
+
+    setMessage(val);
+  };
+
+  const onBotForceKeyDownChange = (e) => {
+    if (e.key === "Enter") {
+      setMessages((prev) => [...prev, { type: "BotForce", body: message }]);
+      setMessage("");
     }
   };
 
@@ -182,11 +198,16 @@ const Content = () => {
             </div>
           ) : (
             <div style={{ flex: 1 }}>
-              <Message />
+              {messages?.map((m) => (
+                <Message type={m.type} body={m.body} key={m.body} />
+              ))}
 
               <Input
+                value={message}
                 placeholder={"Ask me anything"}
                 style={{ position: "fixed", bottom: "50px", width: "640px" }}
+                onChange={onBotForceChange}
+                onKeyDown={onBotForceKeyDownChange}
               />
             </div>
           )}
