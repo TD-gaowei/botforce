@@ -137,13 +137,13 @@ const Content = () => {
       <div className={styles.right}>
         <div className={styles.top}>
           <div>
-            <h3 style={{ margin: 0 }}>Train</h3>
+            <h3 style={{ margin: 0 }}>Bot Training</h3>
             <p style={{ margin: 0 }}>
               Train your bot effortlessly using natural language
             </p>
           </div>
           <div style={{ gap: "8px", display: "flex" }}>
-            <Switch defaultChecked onChange={(val) => setPreview(val)} />
+            <Switch onChange={(val) => setPreview(val)} />
             <span style={{ margin: 0 }}>Preview mode</span>
           </div>
         </div>
