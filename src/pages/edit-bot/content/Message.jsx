@@ -28,7 +28,7 @@ const Message = (props) => {
 
         <Paragraph
           style={{ color: "#6F767D", margin: 0 }}
-          ellipsis={{ rows: 3 }}
+          ellipsis={{ rows: 10 }}
         >
           {body}
         </Paragraph>

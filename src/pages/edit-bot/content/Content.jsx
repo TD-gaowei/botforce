@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import styles from "./index.module.css";
 import Icon from "@cobalt/react-icon";
@@ -11,6 +11,8 @@ import Message from "./Message.jsx";
 import UploadBotIcon from "./UploadBotIcon.jsx";
 
 import welcomeSrc from "../../../assets/welcome.png";
+import BotForceMessages from "./mockData.js";
+import MapMessage from "./MapMessage.jsx";
 
 const tags = [
   "Seek medication advice",
@@ -54,7 +56,7 @@ const Content = () => {
     }
   };
 
-  const [messages, setMessages] = useState([{ type: "You", body: "You" }]);
+  const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
 
   const onBotForceChange = (e) => {
@@ -65,10 +67,30 @@ const Content = () => {
 
   const onBotForceKeyDownChange = (e) => {
     if (e.key === "Enter") {
-      setMessages((prev) => [...prev, { type: "BotForce", body: message }]);
+      setMessages((prev) => [...prev, { type: "You", body: message }]);
+
+      const matchedMessage = BotForceMessages.find((m) =>
+        message.includes(m.identity),
+      );
+
+      if (!matchedMessage) {
+        setMessage("");
+
+        return;
+      }
+
+      setMessages((prev) => [
+        ...prev,
+        { type: "BotForce", body: matchedMessage.body },
+      ]);
+
       setMessage("");
     }
   };
+
+  const hasMap = useMemo(() => {
+    return messages.some((m) => m.body.includes("Maps"));
+  }, [messages]);
 
   return (
     <div className={styles.content}>
@@ -197,10 +219,12 @@ const Content = () => {
               />
             </div>
           ) : (
-            <div style={{ flex: 1 }}>
+            <div style={{ height: "calc(100vh - 350px)", overflow: "auto" }}>
               {messages?.map((m) => (
                 <Message type={m.type} body={m.body} key={m.body} />
               ))}
+
+              {hasMap && <MapMessage />}
 
               <Input
                 value={message}

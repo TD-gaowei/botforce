@@ -28,7 +28,7 @@
   justify-content: space-between;
   /*align-items: center;*/
   /*background: #747bff;*/
-  height: 100%;
+  /*height: calc(100% - 90px);*/
 }
 
 .right {
