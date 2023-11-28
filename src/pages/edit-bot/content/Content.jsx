@@ -13,6 +13,7 @@ import UploadBotIcon from "./UploadBotIcon.jsx";
 import welcomeSrc from "../../../assets/welcome.png";
 import BotForceMessages from "./mockData.js";
 import MapMessage from "./MapMessage.jsx";
+import BouncingDotsLoader from "./loading/index.jsx";
 
 const tags = [
   "Seek medication advice",
@@ -69,22 +70,26 @@ const Content = () => {
     if (e.key === "Enter") {
       setMessages((prev) => [...prev, { type: "You", body: message }]);
 
-      const matchedMessage = BotForceMessages.find((m) =>
-        message.includes(m.identity),
-      );
+      setIsLoading(true);
+      setTimeout(() => {
+        const matchedMessage = BotForceMessages.find((m) =>
+          message.includes(m.identity),
+        );
 
-      if (!matchedMessage) {
+        if (!matchedMessage) {
+          setMessage("");
+
+          return;
+        }
+        setIsLoading(false);
+
+        setMessages((prev) => [
+          ...prev,
+          { type: "BotForce", body: matchedMessage.body },
+        ]);
+
         setMessage("");
-
-        return;
-      }
-
-      setMessages((prev) => [
-        ...prev,
-        { type: "BotForce", body: matchedMessage.body },
-      ]);
-
-      setMessage("");
+      }, 1000);
     }
   };
 
@@ -94,6 +99,8 @@ const Content = () => {
 
   const [parentRef, setParentRef] = useState(null);
   const [childRef, setChildRef] = useState(null);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (!parentRef || !childRef) return;
@@ -239,6 +246,7 @@ const Content = () => {
                 {messages?.map((m) => (
                   <Message type={m.type} body={m.body} key={m.body} />
                 ))}
+                {isLoading ? <BouncingDotsLoader /> : null}
 
                 {hasMap && <MapMessage />}
               </div>
