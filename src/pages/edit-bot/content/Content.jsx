@@ -78,7 +78,7 @@ const Content = () => {
 
         if (!matchedMessage) {
           setMessage("");
-
+          setIsLoading(false);
           return;
         }
         setIsLoading(false);
