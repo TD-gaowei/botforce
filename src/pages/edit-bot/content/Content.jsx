@@ -138,10 +138,10 @@ const Content = () => {
           />
         )}
 
-        <h3 style={{ paddingTop: "24px" }}>Import content</h3>
+        <h3 style={{ paddingTop: "24px" }}>Knowledge Base Documents</h3>
         <Upload />
 
-        <h3 style={{ paddingTop: "24px" }}>Connected Api</h3>
+        <h3 style={{ paddingTop: "24px" }}>System of Record Descriptions</h3>
 
         <div
           style={{
