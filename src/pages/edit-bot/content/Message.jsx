@@ -32,14 +32,14 @@ const Message = (props) => {
         >
           {body}
         </Paragraph>
-        {type === "BotForce" && (
-          <div style={{ display: "flex", flexDirection: "row", gap: "6px" }}>
-            <Icon name={"thumb_up_outline"} size={"tiny"} color={"#AEB3B8"} />
-            <Icon name={"thumb_down_outline"} size={"tiny"} color={"#AEB3B8"} />
-            <Icon name={"feature_survey"} size={"tiny"} color={"#AEB3B8"} />
-            <Icon name={"refresh"} size={"tiny"} color={"#AEB3B8"} />
-          </div>
-        )}
+        {/*{type === "BotForce" && (*/}
+        {/*  <div style={{ display: "flex", flexDirection: "row", gap: "6px" }}>*/}
+        {/*    <Icon name={"thumb_up_outline"} size={"tiny"} color={"#AEB3B8"} />*/}
+        {/*    <Icon name={"thumb_down_outline"} size={"tiny"} color={"#AEB3B8"} />*/}
+        {/*    <Icon name={"feature_survey"} size={"tiny"} color={"#AEB3B8"} />*/}
+        {/*    <Icon name={"refresh"} size={"tiny"} color={"#AEB3B8"} />*/}
+        {/*  </div>*/}
+        {/*)}*/}
       </div>
     </div>
   );
